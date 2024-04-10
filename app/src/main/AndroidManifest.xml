@@ -15,14 +15,10 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
-            android:name=".landing"
+            android:name=".logout"
             android:exported="false" />
         <activity
-            android:name=".registration"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
-        <activity
-            android:name=".login"
+            android:name=".landing"
             android:exported="true"
             android:theme="@style/Theme.Material3.Light.NoActionBar">
             <intent-filter>
@@ -31,6 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".registration"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
+            android:name=".login"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

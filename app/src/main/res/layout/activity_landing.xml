@@ -74,16 +74,7 @@
         tools:layout_editor_absoluteX="29dp"
         tools:layout_editor_absoluteY="541dp" />
 
-    <Button
-        android:id="@+id/buttonReadMore"
-        android:layout_width="151dp"
-        android:layout_height="48dp"
-        android:backgroundTint="@color/text"
-        android:text="Read More"
-        android:textColor="#000104"
-        tools:layout_editor_absoluteX="217dp"
-        tools:layout_editor_absoluteY="541dp"
-        android:onClick="toggleDetails"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -108,4 +99,14 @@
         android:textSize="16sp"/>
 
 </LinearLayout>
+    <Button
+        android:id="@+id/buttonReadMore"
+        android:layout_width="151dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/text"
+        android:text="Read More"
+        android:textColor="#000104"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="541dp"
+        android:onClick="toggleDetails"/>
 </LinearLayout>

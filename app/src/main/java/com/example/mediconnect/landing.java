@@ -1,6 +1,7 @@
 package com.example.mediconnect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,14 @@ public class landing extends AppCompatActivity {
         btnReadMore = findViewById(R.id.buttonReadMore);
         readMore = findViewById(R.id.readMore);
         landingDetails =findViewById(R.id.landing_controls);
+
+        btnReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),login.class);
+                startActivity(intent);
+            }
+        });
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("my_preferances", Context.MODE_PRIVATE);

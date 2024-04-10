@@ -31,17 +31,17 @@ public class login extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
 
-    @Override
+  /*  @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), registration.class);
             startActivity(intent);
             finish();
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +89,7 @@ public class login extends AppCompatActivity {
                                     // Sign in success display toast msg
                                     Toast.makeText(login.this, "Login Successful.",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), logout.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

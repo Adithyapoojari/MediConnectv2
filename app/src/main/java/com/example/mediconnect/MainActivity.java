@@ -23,47 +23,55 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     TextView textView;
     FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("my_preferances", Context.MODE_PRIVATE);
-        boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun",true);
+        // Check if this is the first run of the app
+       SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+        boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun", true);
 
-        if(isFirstRun ){
+        if (isFirstRun) {
+            // If it's the first run, launch the landing activity
             startActivity(new Intent(this, landing.class));
-        }else{
-            setContentView(R.layout.activity_registration);
+            finish(); // Finish MainActivity to prevent returning to it from landing
+        } else {
+            // If not the first run, proceed with user authentication flow
+            setContentView(R.layout.activity_main);
         }
-        finish();
 
-        auth = FirebaseAuth.getInstance();
-        btn = findViewById(R.id.logout);
-        textView = findViewById(R.id.logout);
-        user = auth.getCurrentUser();
+            auth = FirebaseAuth.getInstance();
+            btn = findViewById(R.id.logout);
+            textView = findViewById(R.id.user_details);
+            user = auth.getCurrentUser();
 
-        if(user == null){
-            Intent intent = new Intent(getApplicationContext(),login.class);
-            startActivity(intent);
-            finish();
-        }else{
-            textView.setText(user.getEmail());
-        }
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(),login.class);
-                startActivity(intent);
-                finish();
+            if (user == null) {
+                // If user is not logged in, navigate to login activity
+                startActivity(new Intent(getApplicationContext(), login.class));
+                finish(); // Finish MainActivity to prevent returning to it from login
+            } else {
+                // User is logged in, display their email and allow logout
+                textView.setText(user.getEmail());
             }
-        });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Perform logout
+                    FirebaseAuth.getInstance().signOut();
+                    // Navigate to login activity
+                    startActivity(new Intent(getApplicationContext(), login.class));
+                    finish(); // Finish MainActivity after logout
+                }
+            });
+
+            // Apply padding for system bars
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
     }
-}
