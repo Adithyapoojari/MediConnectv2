@@ -1,6 +1,8 @@
 package com.example.mediconnect;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("my_preferances", Context.MODE_PRIVATE);
+        boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun",true);
+
+        if(isFirstRun ){
+            startActivity(new Intent(this, landing.class));
+        }else{
+            setContentView(R.layout.activity_registration);
+        }
+        finish();
 
         auth = FirebaseAuth.getInstance();
         btn = findViewById(R.id.logout);

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:gravity="center"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".landing">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:id="@+id/landing_controls"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="93dp"
+        android:layout_height="86dp"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        tools:layout_editor_absoluteY="106dp"/>
+
+    <TextView
+        android:id="@+id/appname"
+        android:layout_width="266dp"
+        android:layout_height="46dp"
+        android:text="@string/mediconnect"
+        android:textColor="@color/text"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="127dp" />
+
+
+    <TextView
+        android:id="@+id/urDiag"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:text="Your Diagnosis. Your Health. Your Way"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_margin="15dp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="211dp" />
+
+    <TextView
+        android:id="@+id/passage"
+        android:layout_width="354dp"
+        android:layout_height="157dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Store and access your medical diagnoses with ease. Our secure platform allows you to keep your health information organized and ready for when you need it.
+"       android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_margin="15dp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="303dp" />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="151dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/text"
+        android:text="Register"
+        android:textColor="#000000"
+        app:strokeColor="#AA2626"
+        android:layout_margin="17dp"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="541dp" />
+
+    <Button
+        android:id="@+id/buttonReadMore"
+        android:layout_width="151dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/text"
+        android:text="Read More"
+        android:textColor="#000104"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="541dp"
+        android:onClick="toggleDetails"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Policy and Rules
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+...
+..."
+        android:visibility="gone"
+        android:id="@+id/readMore"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:textSize="16sp"/>
+
+</LinearLayout>
+</LinearLayout>

@@ -7,5 +7,6 @@
     <string name="account_exists_click_here_to_login">Account Exists? Click Here To Login!</string>
     <string name="new_user_click_here">New User? Click Here!</string>
     <string name="logout">LOGOUT</string>
+    <string name="mediconnect">MediConnect</string>
 
 </resources>
