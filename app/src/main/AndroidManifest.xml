@@ -18,9 +18,6 @@
             android:name=".landing"
             android:exported="false" />
         <activity
-            android:name=".landingpage"
-            android:exported="false" />
-        <activity
             android:name=".registration"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
