@@ -31,7 +31,7 @@ public class registration extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
 
- /* @Override
+ @Override
    public void onStart() {
        super.onStart();
        //Check if user is signed in (non-null) and update UI accordingly.
@@ -41,7 +41,7 @@ public class registration extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    }*/
+    }
 
 
     @Override

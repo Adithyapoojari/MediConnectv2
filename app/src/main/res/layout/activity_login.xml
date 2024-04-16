@@ -22,6 +22,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email"
         android:hint="@string/email"
+        android:background="@drawable/input_fielddesign"
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -36,10 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:background="@drawable/input_fielddesign"
         android:textSize="19sp"
         android:paddingBottom="20dp"
         android:layout_margin="12sp"
         android:textColorHint="@color/text"
+        android:padding="12dp"
         android:textColor="@color/text"
         android:hint="@string/password" />
 

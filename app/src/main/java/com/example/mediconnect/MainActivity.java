@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             finish(); // Finish MainActivity to prevent returning to it from landing
         } else {
             // If not the first run, proceed with user authentication flow
-            setContentView(R.layout.activity_main);
+            finish();
         }
 
             auth = FirebaseAuth.getInstance();

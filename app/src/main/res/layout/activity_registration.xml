@@ -27,6 +27,8 @@
         android:textStyle="bold"
         android:textSize="19sp"
         android:paddingBottom="20dp"
+        android:background="@drawable/input_fielddesign"
+        android:padding="12dp"
         android:layout_margin="12sp"
         android:textColorHint="@color/text"
         android:textColor="@color/text"/>
@@ -40,6 +42,8 @@
         android:paddingBottom="20dp"
         android:layout_margin="12sp"
         android:textColorHint="@color/text"
+        android:background="@drawable/input_fielddesign"
+        android:padding="12dp"
         android:textColor="@color/text"
         android:hint="@string/password" />
 
