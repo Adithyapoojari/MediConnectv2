@@ -1,7 +1,9 @@
 package com.example.mediconnect;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -31,18 +32,17 @@ public class registration extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
 
- @Override
-   public void onStart() {
-       super.onStart();
-       //Check if user is signed in (non-null) and update UI accordingly.
+    @Override
+    public void onStart() {
+        super.onStart();
+        //Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-       if(currentUser != null){
-           Intent intent = new Intent(getApplicationContext(),login.class);
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(),login.class);
             startActivity(intent);
             finish();
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +59,8 @@ public class registration extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),login.class);
-                startActivity(intent);
-
+                startActivity(new Intent(getApplicationContext(), login.class));
+                finish();
             }
         });
 
@@ -69,17 +68,19 @@ public class registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
-                String email = editTextEmail.getText().toString();
-                String password = editTextPassword.getText().toString();
+                String email = String.valueOf(editTextEmail.getText());
+                String password = String.valueOf(editTextPassword.getText());
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(registration.this, "Enter email", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
+                    Vibration.vibrate();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(registration.this, "Enter password", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
+                    Vibration.vibrate();
                     return;
                 }
 
@@ -87,24 +88,23 @@ public class registration extends AppCompatActivity {
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                            public void onComplete(Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     // Registration successful
                                     Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), login.class);
-                                    startActivity(intent);
+                                    startActivity(new Intent(getApplicationContext(), login.class));
+                                    Vibration.vibrate();
                                     finish();
                                 } else {
                                     // Registration failed
-                                    Toast.makeText(registration.this, "Registration failed: " + task.getException().getMessage(),
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(registration.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Vibration.vibrate();
                                 }
                             }
                         });
             }
         });
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -112,4 +112,7 @@ public class registration extends AppCompatActivity {
             return insets;
         });
     }
+
+
+
 }

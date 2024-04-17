@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:background="@drawable/img"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wishuser"
+            android:layout_margin="15dp"
+            android:textSize="25sp"/>
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="95dp"
+            android:background="@drawable/usericon_bg"
+            android:layout_gravity="center"
+            android:src="@drawable/user_img"
+            />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="440dp"
+                android:layout_margin="15dp"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
+                android:background="@drawable/image_border"/>
+
+            <ImageView
+                android:layout_width="440dp"
+                android:layout_margin="15dp"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
+                android:background="@drawable/image_border"/>
+
+            <ImageView
+                android:layout_width="440dp"
+                android:layout_margin="15dp"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
+                android:background="@drawable/image_border"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="95dp"
+        android:text="@string/logoutfromhere"
+        android:id="@+id/logoutfromhome" />
+
+
+
+
+
+</LinearLayout>

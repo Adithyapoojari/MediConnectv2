@@ -33,15 +33,9 @@ public class MainActivity extends AppCompatActivity {
        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
         boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun", true);
 
-        if (isFirstRun) {
-            // If it's the first run, launch the landing activity
-            startActivity(new Intent(this, landing.class));
-            finish(); // Finish MainActivity to prevent returning to it from landing
-        } else {
-            // If not the first run, proceed with user authentication flow
-            finish();
-        }
 
+
+            Vibration.init(getApplicationContext());
             auth = FirebaseAuth.getInstance();
             btn = findViewById(R.id.logout);
             textView = findViewById(R.id.user_details);
@@ -59,15 +53,14 @@ public class MainActivity extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Perform logout
+                    //Logout when user clicks
                     FirebaseAuth.getInstance().signOut();
                     // Navigate to login activity
                     startActivity(new Intent(getApplicationContext(), login.class));
-                    finish(); // Finish MainActivity after logout
+                    finish();
                 }
             });
 
-            // Apply padding for system bars
             ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class logout extends AppCompatActivity {
 
-    FirebaseAuth auth;
+    FirebaseAuth mAuth;
     Button btn;
     TextView textView;
     FirebaseUser user;
@@ -27,12 +27,14 @@ public class logout extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_logout);
 
-        auth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         btn = findViewById(R.id.logoutlg);
         textView = findViewById(R.id.user_email);
-        user = auth.getCurrentUser();
+        user = mAuth.getCurrentUser();
 
-        if (user == null) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
             // If user is not logged in, navigate to login activity
             startActivity(new Intent(getApplicationContext(), login.class));
             finish(); // Finish MainActivity to prevent returning to it from login
@@ -48,6 +50,7 @@ public class logout extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 // Navigate to login activity
                 startActivity(new Intent(getApplicationContext(), login.class));
+                Vibration.vibrate();
                 finish(); // Finish MainActivity after logout
             }
         });

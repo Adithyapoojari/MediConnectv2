@@ -1,6 +1,8 @@
 package com.example.mediconnect;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,10 +36,10 @@ public class login extends AppCompatActivity {
    @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Checking for user present or not
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), logout.class);
+            Intent intent = new Intent(getApplicationContext(), home.class);
             startActivity(intent);
             finish();
         }
@@ -58,6 +60,7 @@ public class login extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Navigate to registration on logout
                 Intent intent = new Intent(getApplicationContext(),registration.class);
                startActivity(intent);
             }
@@ -68,15 +71,17 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
                 String email,password;
-                email = editTextEmail.getText().toString();
-                password = editTextPassword.getText().toString();
+                email = String.valueOf(editTextEmail.getText());
+                password = String.valueOf(editTextPassword.getText());
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(login.this,"Enter email",Toast.LENGTH_SHORT).show();
+                    Vibration.vibrate();
                     return;
                 }
                 if(TextUtils.isEmpty(password)){
                     Toast.makeText(login.this,"Enter password",Toast.LENGTH_SHORT).show();
+                    Vibration.vibrate();
                     return;
                 }
 
@@ -89,13 +94,15 @@ public class login extends AppCompatActivity {
                                     // Sign in success display toast msg
                                     Toast.makeText(login.this, "Login Successful.",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), logout.class);
+                                    Vibration.vibrate();
+                                    Intent intent = new Intent(getApplicationContext(), home.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(login.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
+                                    Vibration.vibrate();
                                 }
                             }
                         });
@@ -107,5 +114,7 @@ public class login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
     }
+
 }
