@@ -26,29 +26,27 @@ public class landing extends AppCompatActivity {
     Button btnReg,btnReadMore;
     LinearLayout landingDetails;
     FirebaseAuth mAuth;
-    boolean has_run=false;
+    FirebaseUser user;
 
     @Override
     public void onStart() {
         super.onStart();
 
+
         mAuth = FirebaseAuth.getInstance();
 
-        if(has_run){
-            Intent intent = new Intent(getApplicationContext(), login.class);
-            startActivity(intent);
-            finish();
-        }
-
-        // Checking for user present or not
+        // Checking for user present or not and if already registered
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), login.class);
-            startActivity(intent);
-            finish();
-        }
+        user = mAuth.getCurrentUser();
 
+        if (user == null) {
+            // If user is not logged in, navigate to login activity
+            startActivity(new Intent(getApplicationContext(), login.class));
+            finish(); // Finish MainActivity to prevent returning to it from login
+        }
     }
+
+
 
 
     @Override
@@ -61,7 +59,7 @@ public class landing extends AppCompatActivity {
         landingDetails =findViewById(R.id.landing_controls);
         btnReadMore=findViewById(R.id.buttonReadMore);
 
-        has_run=true;
+
 
 
         btnReg.setOnClickListener(new View.OnClickListener() {

@@ -44,14 +44,15 @@
         android:id="@+id/urDiag"
         android:layout_width="353dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="15dp"
         android:text="Your Diagnosis. Your Health. Your Way"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_margin="15dp"
         tools:layout_editor_absoluteX="22dp"
         tools:layout_editor_absoluteY="211dp" />
 
-        <TextView
+    <TextView
             android:id="@+id/passage"
             android:layout_width="354dp"
             android:layout_height="157dp"

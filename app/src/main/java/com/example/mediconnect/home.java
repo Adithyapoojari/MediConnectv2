@@ -34,23 +34,16 @@ public class home extends AppCompatActivity {
         logout = findViewById(R.id.logoutfromhome);
         username =findViewById(R.id.username);
 
+        globalvariables.setis_run(true);
+
         int hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
 
         String greetingMessage;
-        if (hourOfDay >= 0 && hourOfDay < 12) {
-            greetingMessage = "Good Morning";
-        } else if (hourOfDay >= 12 && hourOfDay < 18) {
-            greetingMessage = "Good Afternoon";
-        } else if (hourOfDay >= 18 && hourOfDay < 24) {
-            greetingMessage = "Good Evening";
-        } else {
-            greetingMessage = "Good Night";
-        }
-
+        greetingMessage = "Hello There!";
         // Get the current user from Firebase Authentication
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        String userName = currentUser != null ? currentUser.getEmail() : "";
+        String userName = currentUser.getEmail() + "";
 
         // Construct the text to be displayed
         String displayText = greetingMessage + "\n" + userName;

@@ -29,6 +29,7 @@ public class registration extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
     Button buttonReg;
     FirebaseAuth mAuth;
+    FirebaseUser user;
     ProgressBar progressBar;
     TextView textView;
 
@@ -36,11 +37,13 @@ public class registration extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         //Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),login.class);
-            startActivity(intent);
-            finish();
+        FirebaseUser currentUser= mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
+
+        if (user == null) {
+            // If user is not logged in, navigate to login activity
+            startActivity(new Intent(getApplicationContext(), login.class));
+            finish(); // Finish MainActivity to prevent returning to it from login
         }
     }
 

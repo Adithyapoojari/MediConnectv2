@@ -36,6 +36,7 @@ public class login extends AppCompatActivity {
    @Override
     public void onStart() {
         super.onStart();
+
         // Checking for user present or not
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
@@ -94,6 +95,7 @@ public class login extends AppCompatActivity {
                                     // Sign in success display toast msg
                                     Toast.makeText(login.this, "Login Successful.",
                                             Toast.LENGTH_SHORT).show();
+
                                     Vibration.vibrate();
                                     Intent intent = new Intent(getApplicationContext(), home.class);
                                     startActivity(intent);
