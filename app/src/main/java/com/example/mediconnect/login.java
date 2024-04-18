@@ -44,6 +44,10 @@ public class login extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+       SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+       SharedPreferences.Editor editor = sharedPreferences.edit();
+       editor.putBoolean("isFirstRun", false);
+       editor.apply();
     }
 
     @Override
@@ -57,6 +61,7 @@ public class login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressbar);
         textView = findViewById(R.id.registernow);
+        Vibration.init(this);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +100,6 @@ public class login extends AppCompatActivity {
                                     // Sign in success display toast msg
                                     Toast.makeText(login.this, "Login Successful.",
                                             Toast.LENGTH_SHORT).show();
-
                                     Vibration.vibrate();
                                     Intent intent = new Intent(getApplicationContext(), home.class);
                                     startActivity(intent);

@@ -2,6 +2,7 @@ package com.example.mediconnect;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
@@ -40,11 +41,15 @@ public class registration extends AppCompatActivity {
         FirebaseUser currentUser= mAuth.getCurrentUser();
         user = mAuth.getCurrentUser();
 
-        if (user == null) {
-            // If user is not logged in, navigate to login activity
-            startActivity(new Intent(getApplicationContext(), login.class));
-            finish(); // Finish MainActivity to prevent returning to it from login
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), home.class);
+            startActivity(intent);
+            finish();
         }
+        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isFirstRun", false);
+        editor.apply();
     }
 
     @Override
@@ -58,6 +63,14 @@ public class registration extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressbar);
         textView = findViewById(R.id.logto);
+        Vibration.init(this);
+
+        // Initialize SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isFirstRun", false);
+        editor.apply();
+
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

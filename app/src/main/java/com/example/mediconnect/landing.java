@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class landing extends AppCompatActivity {
 
 
-    TextView readMore;
+    ScrollView readMore;
     Button btnReg,btnReadMore;
     LinearLayout landingDetails;
     FirebaseAuth mAuth;
@@ -37,12 +38,11 @@ public class landing extends AppCompatActivity {
 
         // Checking for user present or not and if already registered
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        user = mAuth.getCurrentUser();
 
-        if (user == null) {
-            // If user is not logged in, navigate to login activity
-            startActivity(new Intent(getApplicationContext(), login.class));
-            finish(); // Finish MainActivity to prevent returning to it from login
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), home.class);
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -59,7 +59,15 @@ public class landing extends AppCompatActivity {
         landingDetails =findViewById(R.id.landing_controls);
         btnReadMore=findViewById(R.id.buttonReadMore);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
 
+        // Check if the user has already registered
+        boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun", true);
+        if (!isFirstRun) {
+            // If not the first run, redirect to login activity
+            startActivity(new Intent(this, login.class));
+            finish();
+        }
 
 
         btnReg.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +87,13 @@ public class landing extends AppCompatActivity {
     public void toggleDetails(View view){
         if(readMore.getVisibility() == View.VISIBLE){
             readMore.setVisibility(View.GONE);
+            btnReg.setVisibility(View.VISIBLE);
             btnReadMore.setText("Read More");
             landingDetails.setVisibility(View.VISIBLE);
         }else{
             readMore.setVisibility(View.VISIBLE);
             btnReadMore.setText("Go Back");
+            btnReg.setVisibility(View.GONE);
             landingDetails.setVisibility(View.GONE);
 
         }

@@ -14,7 +14,7 @@ public class Vibration {
     // Trigger vibration with a default duration (500 milliseconds)
     public static void vibrate() {
         if (vibrator != null && vibrator.hasVibrator()) {
-            vibrator.vibrate(1000);
+            vibrator.vibrate(200);
         }
     }
 

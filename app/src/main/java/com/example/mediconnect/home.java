@@ -34,8 +34,6 @@ public class home extends AppCompatActivity {
         logout = findViewById(R.id.logoutfromhome);
         username =findViewById(R.id.username);
 
-        globalvariables.setis_run(true);
-
         int hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
 
