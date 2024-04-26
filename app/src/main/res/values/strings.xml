@@ -7,58 +7,56 @@
     <string name="account_exists_click_here_to_login">Account Exists? Click Here To Login!</string>
     <string name="new_user_click_here">New User? Click Here!</string>
     <string name="logout">LOGOUT</string>
+    <string name="motto">Your Diagnosis. Your Health. Your Way.</string>
     <string name="mediconnect">MediConnect</string>
     <string name="title_activity_home">home</string>
     <string name="logout_set">logout_set</string>
-    <string name="large_text">
-        "Privacy Policy for Storage App
-
-\n Introduction
-\n   Welcome to our Storage App. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our app.
-\n Information We Collect
-\n   We may collect certain information when you use our app, including device information, location data, and user preferences.
-\n Use of Information
-\n   We use the collected information to provide and improve our services, personalize your experience, and communicate with you.
-\n Data Security
-\n   We implement appropriate security measures to protect your data against unauthorized access, alteration, or disclosure.
-\n Cookies and Tracking
-\n   Our app may use cookies and similar tracking technologies to enhance user experience and analyze usage patterns.
-\n Third-Party Services
-\n   We may use third-party services that have their own privacy policies. We encourage you to review their policies.
-\n Data Sharing
-\n   We do not sell or share your personal information with third parties except as necessary to provide our services.
-\n Data Retention
-\n   We retain your information only as long as necessary for the purposes outlined in this Privacy Policy.
-\n Children's Privacy
-\n   Our app is not intended for children under the age of 13. We do not knowingly collect personal information from children.
-\n User Rights
-\n    You have the right to access, correct, or delete your personal information. Contact us for assistance.
-\n Opt-Out
-\n    You can opt out of certain data collection and processing by adjusting settings within the app.
-\n Changes to Policy
-\n    We may update this Privacy Policy from time to time. Check back periodically for any changes.
-\n Consent
-\n    By using our app, you consent to the terms of this Privacy Policy.
-n Location Services
-\n    Our app may request access to your device's location to provide location-based features. You can manage location settings in your device's settings.
-\n Analytics
-\n    We use analytics tools to gather and analyze app usage data for improving our services.
-\n Advertising
-\n    Our app may display third-party advertisements. Ad providers may collect data for ad personalization.
-\n Account Information
-\n    If you create an account, we may store and use your account information to provide personalized services.
-\n Data Transfer
-\n    Your information may be transferred to and stored on servers located in different countries for processing.
-
-\n Contact Information
-\n   If you have questions or concerns about our Privacy Policy, please contact us at rishirpoojary.com.
-
-\n Effective Date
-\n    This Privacy Policy is effective as of  13 April 2024.\n\n"
+    <string name="large_text">"Privacy Policy for Storage App\n\n
+Introduction\n\n
+Welcome to our Storage App. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our app.\n\n
+Information We Collect\n\n
+We may collect certain information when you use our app, including device information, location data, and user preferences.\n\n
+Use of Information\n\n
+We use the collected information to provide and improve our services, personalize your experience, and communicate with you.\n\n
+Data Security\n\n
+We implement appropriate security measures to protect your data against unauthorized access, alteration, or disclosure.\n\n
+Cookies and Tracking\n\n
+Our app may use cookies and similar tracking technologies to enhance user experience and analyze usage patterns.\n\n
+Third-Party Services\n\n
+We may use third-party services that have their own privacy policies. We encourage you to review their policies.\n\n
+Data Sharing\n\n
+We do not sell or share your personal information with third parties except as necessary to provide our services.\n\n
+Data Retention\n\n
+We retain your information only as long as necessary for the purposes outlined in this Privacy Policy.\n\n
+Children's Privacy\n\n
+Our app is not intended for children under the age of 13. We do not knowingly collect personal information from children.\n\n
+User Rights\n\n
+You have the right to access, correct, or delete your personal information. Contact us for assistance.\n\n
+Opt-Out\n\n
+You can opt out of certain data collection and processing by adjusting settings within the app.\n\n
+Changes to Policy\n\n
+We may update this Privacy Policy from time to time. Check back periodically for any changes.\n\n
+Consent\n\n
+By using our app, you consent to the terms of this Privacy Policy.\n\n
+Location Services\n\n
+Our app may request access to your device's location to provide location-based features. You can manage location settings in your device's settings.\n\n
+Analytics\n\n
+We use analytics tools to gather and analyze app usage data for improving our services.\n\n
+Advertising\n\n
+Our app may display third-party advertisements. Ad providers may collect data for ad personalization.\n\n
+Account Information\n\n
+If you create an account, we may store and use your account information to provide personalized services.\n\n
+Data Transfer\n\n
+Your information may be transferred to and stored on servers located in different countries for processing.\n\n
+Contact Information\n\n
+If you have questions or concerns about our Privacy Policy, please contact us at rishirpoojary.com.\n\n
+Effective Date\n\n
+This Privacy Policy is effective as of  13 April 2024.\n\n"
     </string>
     <string name="action_settings">Settings</string>
-    <string name="wishuser">wishuser</string>
-    <string name="logoutfromhere">logoutfromhere</string>
+    <string name="wishuser">"wishuser"</string>
+    <string name="logoutfromhere">"logoutfromhere"</string>
     <string name="read_more">Read More</string>
-
+    <string name="welcome_nto_mediconnect">"Welcome\nTo MediConnect"</string>
+    <string name="get_started">Get Started</string>
 </resources>

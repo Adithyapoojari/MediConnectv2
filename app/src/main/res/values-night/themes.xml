@@ -4,4 +4,9 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+    <!-- Custom theme for the status bar -->
+    <!-- Theme for dark mode -->
+    <style name="AppTheme.StatusBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/darkStatusBarColor</item>
+    </style>
 </resources>

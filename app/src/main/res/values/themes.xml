@@ -10,6 +10,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <!-- Custom theme for the status bar -->
+    <!-- Theme for light mode -->
+    <style name="AppTheme.StatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/lightStatusBarColor</item>
+    </style>
+
+
+
+
+
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
