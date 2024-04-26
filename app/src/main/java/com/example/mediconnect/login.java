@@ -75,11 +75,11 @@ public class login extends AppCompatActivity {
         buttonLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+
                 String email,password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
-
+                Toast.makeText(login.this,"Logging In, PLease Wait.",Toast.LENGTH_SHORT).show();
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(login.this,"Enter email",Toast.LENGTH_SHORT).show();
                     Vibration.vibrate();
@@ -95,7 +95,6 @@ public class login extends AppCompatActivity {
                         .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     // Sign in success display toast msg
                                     Toast.makeText(login.this, "Login Successful.",
