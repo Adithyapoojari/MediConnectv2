@@ -2,6 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="text">#254D9E</color>
+    <color name="green">#F550DD40</color>
     <color name="buttonColor">#81DEE3C1</color>
+    <color name="mainColor">#5CBC40</color>
+    <color name="buttonColor2">#134098</color>
+    <color name="text">#040A29</color>
+    <color name="lightStatusBarColor">#00FF00</color> <!-- Green color for light mode -->
+    <color name="darkStatusBarColor">#0000FF</color> <!-- Blue color for dark mode -->
+
 </resources>

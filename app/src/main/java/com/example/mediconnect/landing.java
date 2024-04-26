@@ -6,11 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -23,16 +18,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class landing extends AppCompatActivity {
 
 
-    ScrollView readMore;
-    Button btnReg,btnReadMore;
-    LinearLayout landingDetails;
+    Button btnReg;
     FirebaseAuth mAuth;
-    FirebaseUser user;
 
     @Override
     public void onStart() {
         super.onStart();
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -46,18 +37,13 @@ public class landing extends AppCompatActivity {
         }
     }
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_landing);
-        readMore = findViewById(R.id.readMore);
-        btnReg=findViewById(R.id.buttonRegister);
-        landingDetails =findViewById(R.id.landing_controls);
-        btnReadMore=findViewById(R.id.buttonReadMore);
+
+        btnReg = findViewById(R.id.buttonRegister);
 
         SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
 
@@ -68,7 +54,6 @@ public class landing extends AppCompatActivity {
             startActivity(new Intent(this, login.class));
             finish();
         }
-
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,18 +69,5 @@ public class landing extends AppCompatActivity {
             return insets;
         });
     }
-    public void toggleDetails(View view){
-        if(readMore.getVisibility() == View.VISIBLE){
-            readMore.setVisibility(View.GONE);
-            btnReg.setVisibility(View.VISIBLE);
-            btnReadMore.setText("Read More");
-            landingDetails.setVisibility(View.VISIBLE);
-        }else{
-            readMore.setVisibility(View.VISIBLE);
-            btnReadMore.setText("Go Back");
-            btnReg.setVisibility(View.GONE);
-            landingDetails.setVisibility(View.GONE);
 
-        }
-    }
 }
