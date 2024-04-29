@@ -8,6 +8,7 @@ import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +28,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class registration extends AppCompatActivity {
 
-    TextInputEditText editTextEmail, editTextPassword;
+    EditText editTextEmail, editTextPassword;
     Button buttonReg;
     FirebaseAuth mAuth;
     FirebaseUser user;
-    ProgressBar progressBar;
     TextView textView;
 
     @Override
@@ -61,8 +61,7 @@ public class registration extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         buttonReg = findViewById(R.id.btn_register);
         mAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressbar);
-        textView = findViewById(R.id.logto);
+        textView = findViewById(R.id.loginto);
         Vibration.init(this);
 
         // Initialize SharedPreferences
@@ -83,19 +82,16 @@ public class registration extends AppCompatActivity {
         buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
                 String email = String.valueOf(editTextEmail.getText());
                 String password = String.valueOf(editTextPassword.getText());
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(registration.this, "Enter email", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
                     Vibration.vibrate();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(registration.this, "Enter password", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
                     Vibration.vibrate();
                     return;
                 }
@@ -105,7 +101,6 @@ public class registration extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     // Registration successful
                                     Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();

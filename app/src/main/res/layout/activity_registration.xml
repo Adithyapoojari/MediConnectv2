@@ -1,79 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp"
     android:layout_width="match_parent"
-    android:background="@drawable/img"
     android:layout_height="match_parent"
-    tools:context=".registration">
+    tools:context=".login">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email"
-        android:hint="@string/email"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="19sp"
-        android:paddingBottom="20dp"
-        android:background="@drawable/input_fielddesign"
-        android:padding="12dp"
-        android:layout_margin="12sp"
-        android:textColorHint="@color/text"
-        android:textColor="@color/text"/>
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="19sp"
-        android:paddingBottom="20dp"
-        android:layout_margin="12sp"
-        android:textColorHint="@color/text"
-        android:background="@drawable/input_fielddesign"
-        android:padding="12dp"
-        android:textColor="@color/text"
-        android:hint="@string/password" />
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="254dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/fullbodybutton"
+            android:text="Register Now"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressbar"
-        android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="452dp"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/top_background" />
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.9"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:background="@drawable/button_design"
-        android:layout_margin="20sp"
-        android:text="@string/register" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textSize="55sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/logto"
-        android:text="@string/account_exists_click_here_to_login"/>
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="606dp"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:text="Full Name"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inputfield_design"
+                android:ems="10"
+                android:hint="Your Fullname Here"
+                android:padding="12sp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Email"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inputfield_design"
+                android:ems="10"
+                android:hint="ex: abc@gmail.com"
+                android:inputType="textEmailAddress"
+                android:padding="12sp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/password"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inputfield_design"
+                android:ems="10"
+                android:hint="Your Password Here"
+                android:inputType="textPassword"
+                android:padding="12sp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="Confirm Password"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inputfield_design"
+                android:ems="10"
+                android:hint="Re-Write Password"
+                android:inputType="textPassword"
+                android:padding="12sp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+
+
+                <TextView
+                    android:id="@+id/loginto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Have Acccount? Click Here!"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:typeface="monospace" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
