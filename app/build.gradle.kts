@@ -39,7 +39,14 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("androidx.recyclerview:recyclerview:1.2.1") // RecyclerView
+    implementation("com.firebaseui:firebase-ui-database:7.1.1") // FirebaseUI for Realtime Database
+    implementation("com.google.android.material:material:1.4.0") // Material Components for Android
+    implementation("androidx.cardview:cardview:1.0.0") // CardView
+    implementation ("com.github.bumptech.glide:glide:4.16.0")//glide
 }

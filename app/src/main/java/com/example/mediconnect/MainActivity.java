@@ -13,9 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,11 +27,24 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     TextView textView;
     FirebaseUser user;
+    RecyclerView recyclerView;
+    mainAdaptor mainAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        recyclerView=(RecyclerView)findViewById(R.id.rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions<mainMethod> options =
+                new FirebaseRecyclerOptions.Builder<mainMethod>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("patient"), mainMethod.class)
+                        .build();
+
+        mainAdaptor = new mainAdaptor(options);
+        recyclerView.setAdapter(mainAdaptor);
 
         // Check if this is the first run of the app
        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
@@ -67,4 +84,16 @@ public class MainActivity extends AppCompatActivity {
                 return insets;
             });
         }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mainAdaptor.startListening();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mainAdaptor.startListening();
+    }
+}
