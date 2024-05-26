@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class registration extends AppCompatActivity {
 
-    EditText editTextEmail, editTextPassword;
+    EditText editTextEmail, editTextPassword,c_passwordtext;
     Button buttonReg;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -62,6 +63,7 @@ public class registration extends AppCompatActivity {
         buttonReg = findViewById(R.id.btn_register);
         mAuth = FirebaseAuth.getInstance();
         textView = findViewById(R.id.loginto);
+        c_passwordtext = findViewById(R.id.confirm_password);
         Vibration.init(this);
 
         // Initialize SharedPreferences
@@ -71,59 +73,63 @@ public class registration extends AppCompatActivity {
         editor.apply();
 
 
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), login.class));
-                finish();
-            }
-        });
+        textView.setOnClickListener(v -> startActivity(new Intent(this, login.class)));
 
-        buttonReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = String.valueOf(editTextEmail.getText());
-                String password = String.valueOf(editTextPassword.getText());
+        buttonReg.setOnClickListener(v -> create_Account());
+    }
+    void create_Account(){
+        String email = editTextEmail.getText().toString();
+        String password = editTextPassword.getText().toString();
+        String c_password = c_passwordtext.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(registration.this, "Enter email", Toast.LENGTH_SHORT).show();
-                    Vibration.vibrate();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(registration.this, "Enter password", Toast.LENGTH_SHORT).show();
-                    Vibration.vibrate();
-                    return;
-                }
+        boolean is_valid = validateData(email,password,c_password);
+        if(!is_valid){
+            return;
+        }
+        createAccountInFireBase(email,password);
+    }
+    void createAccountInFireBase(String email, String password){
 
-                // Create a new user with the provided email and password
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Registration successful
-                                    Toast.makeText(registration.this, "Account Created", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), login.class));
-                                    Vibration.vibrate();
-                                    finish();
-                                } else {
-                                    // Registration failed
-                                    Toast.makeText(registration.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    Vibration.vibrate();
-                                }
-                            }
-                        });
-            }
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(registration.this,
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Utility.showToast(registration.this,"Account created successfully! Check Email For Verification");
+                            firebaseAuth.getCurrentUser().sendEmailVerification();
+                            firebaseAuth.signOut();
+                            startActivity(new Intent(registration.this,login.class));
+                        }else{
+                            Utility.showToast(registration.this,task.getException().getLocalizedMessage());
+                        }
+                    }
+                });
     }
 
 
 
+    boolean validateData(String email, String password, String c_password) {
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required");
+            return false;
+        }
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required");
+            return false;
+        }
+        if (c_password.isEmpty()) {
+            c_passwordtext.setError("Confirm Password is required");
+            return false;
+        }
+        if (password.length() < 7 || c_password.length()<7) {
+            editTextPassword.setError("Password must be at least 7 characters");
+            return false;
+        }
+        if (!password.equals(c_password)) {
+            c_passwordtext.setError("Password does not match");
+            return false;
+        }
+        return true;
+    }
 }

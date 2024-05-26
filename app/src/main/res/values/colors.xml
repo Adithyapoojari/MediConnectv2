@@ -3,11 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#F550DD40</color>
-    <color name="buttonColor">#81DEE3C1</color>
-    <color name="mainColor">#5CBC40</color>
+    <color name="buttonColor">#818A8C7F</color>
+    <color name="mainColor">#EE57D134</color>
     <color name="buttonColor2">#134098</color>
+    <color name="grey">#6D7077</color>
     <color name="text">#040A29</color>
-    <color name="lightStatusBarColor">#00FF00</color> <!-- Green color for light mode -->
+    <color name="lightStatusBarColor">#0CE30C</color> <!-- Green color for light mode -->
     <color name="darkStatusBarColor">#0000FF</color> <!-- Blue color for dark mode -->
+    <color name="teal">#277EE8</color>
+    <color name="backg">#393B3C</color>
+
 
 </resources>

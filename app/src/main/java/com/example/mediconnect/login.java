@@ -53,6 +53,7 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         buttonLog = findViewById(R.id.btn_login);
@@ -60,63 +61,57 @@ public class login extends AppCompatActivity {
         textView = findViewById(R.id.registernow);
         Vibration.init(this);
 
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Navigate to registration on logout
-                Intent intent = new Intent(getApplicationContext(),registration.class);
-               startActivity(intent);
-            }
-        });
-
-        buttonLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String email,password;
-                email = String.valueOf(editTextEmail.getText());
-                password = String.valueOf(editTextPassword.getText());
-                Toast.makeText(login.this,"Logging In, PLease Wait.",Toast.LENGTH_SHORT).show();
-                if(TextUtils.isEmpty(email)){
-                    Toast.makeText(login.this,"Enter email",Toast.LENGTH_SHORT).show();
-                    Vibration.vibrate();
-                    return;
-                }
-                if(TextUtils.isEmpty(password)){
-                    Toast.makeText(login.this,"Enter password",Toast.LENGTH_SHORT).show();
-                    Vibration.vibrate();
-                    return;
-                }
-
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success display toast msg
-                                    Toast.makeText(login.this, "Login Successful.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Vibration.vibrate();
-                                    Intent intent = new Intent(getApplicationContext(), home.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Vibration.vibrate();
-                                }
-                            }
-                        });
-            }
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
+        textView.setOnClickListener(v -> startActivity(new Intent(this, registration.class)));
+        buttonLog.setOnClickListener(v -> loginUser());
     }
 
+    void loginUser(){
+       String email = editTextEmail.getText().toString();
+       String password = editTextPassword.getText().toString();
+
+       boolean is_valid = validateData(email,password);
+       if(!is_valid){
+           return;
+       }
+       loginAccountInFireBase(email,password);
+   }
+
+   void loginAccountInFireBase(String email, String password) {
+       FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
+
+       firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(login.this,
+               new OnCompleteListener<AuthResult>() {
+           @Override
+           public void onComplete(@NonNull Task<AuthResult> task) {
+               if(task.isSuccessful()){
+                   if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                       startActivity(new Intent(login.this,home.class));
+                       finish();
+                   }else{
+                       Utility.showToast(login.this,
+                               "Email Not Verified!Please Verify Your Email");
+                   }
+               }else{
+                   Utility.showToast(login.this,task.getException().getLocalizedMessage());
+               }
+           }
+       });
+   }
+
+   boolean validateData(String email, String password) {
+       if (email.isEmpty()) {
+           editTextEmail.setError("Email is required");
+           return false;
+       }
+       if (password.isEmpty()) {
+           editTextPassword.setError("Password is required");
+           return false;
+       }
+       if (password.length() < 7) {
+           editTextPassword.setError("Password is constrained to more than 7 characters");
+           return false;
+       }
+
+       return true;
+   }
 }

@@ -8,10 +8,8 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -20,6 +18,8 @@ import java.util.Calendar;
 public class home extends AppCompatActivity {
 
     Button logout;
+    FloatingActionButton add_btn;
+
     FirebaseAuth mAuth;
     FirebaseUser  user;
     TextView username;
@@ -33,9 +33,12 @@ public class home extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         logout = findViewById(R.id.logoutfromhome);
         username =findViewById(R.id.username);
+        add_btn = findViewById(R.id.add_btn);
+
 
         int hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
+        add_btn.setOnClickListener(v-> startActivity(new Intent(this, addpatientdetails.class)));
 
         String greetingMessage;
         greetingMessage = "Hello There!";
@@ -60,10 +63,7 @@ public class home extends AppCompatActivity {
         });
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+
     }
 }

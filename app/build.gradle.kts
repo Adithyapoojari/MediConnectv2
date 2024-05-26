@@ -49,4 +49,6 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0") // Material Components for Android
     implementation("androidx.cardview:cardview:1.0.0") // CardView
     implementation ("com.github.bumptech.glide:glide:4.16.0")//glide
+    //by user dependency
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 }
