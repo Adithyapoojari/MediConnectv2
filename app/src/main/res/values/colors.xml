@@ -11,7 +11,9 @@
     <color name="lightStatusBarColor">#0CE30C</color> <!-- Green color for light mode -->
     <color name="darkStatusBarColor">#0000FF</color> <!-- Blue color for dark mode -->
     <color name="teal">#277EE8</color>
-    <color name="backg">#393B3C</color>
+    <color name="backg">#0E1514</color>
+    <color name="backbg">#8BC34A</color>
+    <color name="dark_text">#212121</color>
 
 
 </resources>

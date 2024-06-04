@@ -27,4 +27,11 @@ public class Utility {
     static String timestamptoString(Timestamp timestamp) {
         return new SimpleDateFormat("MM/dd/yyyy").format(timestamp.toDate());
     }
+
+    static CollectionReference getCollectionReferenceFromUsers() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        return FirebaseFirestore.getInstance().collection("diagnosis")//diagnosis collection to store everything
+                .document(currentUser.getUid()).collection("mydiagnosis");//mydiagnosis collection to store the user's diagnosis
+
+    }
 }
