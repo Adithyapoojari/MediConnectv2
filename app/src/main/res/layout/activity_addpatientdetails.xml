@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/backbg"
     tools:context=".addpatientdetails">
     <LinearLayout
@@ -25,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add New Patient"
-        android:textSize="32sp"
         android:textColor="@color/black"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:typeface="monospace"
         tools:ignore="MissingConstraints" />
@@ -66,26 +65,7 @@
             android:textColor="@color/white"
             android:typeface="monospace"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date Of Birth:"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:typeface="monospace"
-            android:textColor="@color/dark_text"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            />
-        <DatePicker
-            android:id="@+id/dob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_gravity="center_horizontal" />
+
         <EditText
             android:id="@+id/contact_no"
             android:layout_width="match_parent"
@@ -249,8 +229,39 @@
             android:text="Add Diagnosis"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:visibility="visible"
             android:typeface="monospace" />
-
     </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/delete_btn"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/save_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/save_btn"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            />
+
+
+
+
     </LinearLayout>
 </ScrollView>

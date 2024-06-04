@@ -9,7 +9,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utility {
 
@@ -23,9 +25,19 @@ public class Utility {
                 document(currentUser.getUid()).collection(("my_notes"));
 
     }
-
+//to convert timestamp to string
     static String timestamptoString(Timestamp timestamp) {
         return new SimpleDateFormat("MM/dd/yyyy").format(timestamp.toDate());
+    }
+    //to convert string to timestamp
+    public static Timestamp stringToTimestamp(String dateString) {
+        try {
+            Date date = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
+            return new Timestamp(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     static CollectionReference getCollectionReferenceFromUsers() {

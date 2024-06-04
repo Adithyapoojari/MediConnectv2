@@ -59,4 +59,6 @@ This Privacy Policy is effective as of  13 April 2024.\n\n"
     <string name="read_more">Read More</string>
     <string name="welcome_nto_mediconnect">"Welcome\nTo MediConnect"</string>
     <string name="get_started">Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

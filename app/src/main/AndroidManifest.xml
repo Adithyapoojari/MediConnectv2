@@ -16,9 +16,15 @@
         android:theme="@style/AppTheme.StatusBar"
         tools:targetApi="31">
         <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
+            android:name=".diagnosisHistory"
+            android:exported="false" />
+        <activity
             android:name=".addpatientdetails"
             android:exported="false"
-            android:theme="@style/AppTheme.StatusBar"/>
+            android:theme="@style/AppTheme.StatusBar" />
         <activity
             android:name=".Splash"
             android:exported="true"
@@ -33,12 +39,10 @@
             android:name=".home"
             android:exported="false"
             android:theme="@style/AppTheme.StatusBar" />
-
         <activity
             android:name=".landing"
             android:exported="false"
-            android:theme="@style/AppTheme.StatusBar"/>
-
+            android:theme="@style/AppTheme.StatusBar" />
         <activity
             android:name=".registration"
             android:exported="false"

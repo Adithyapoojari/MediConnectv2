@@ -1,6 +1,7 @@
 package com.example.mediconnect;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.autofill.AutofillValue;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,10 +27,12 @@ public class addpatientdetails extends AppCompatActivity {
 
     EditText name, contact_no, reason, vital_signs, medication, notes;
     RadioGroup gender;
-    TextView genderlabel;
-    DatePicker dob;
-    Button add_patient;
+    TextView pageTitleText;
 
+    FloatingActionButton delete_patient,edit_patient;
+    Button add_patient;
+    String editname,editcontact_no,editgender,editreason,editvital_signs,editmedication,editnotes,docId;
+    boolean isEditMode = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,6 @@ public class addpatientdetails extends AppCompatActivity {
         setContentView(R.layout.activity_addpatientdetails);
 
         name = findViewById(R.id.patientName);
-        dob = (DatePicker) findViewById(R.id.dob);
         contact_no = findViewById(R.id.contact_no);
         gender = findViewById(R.id.gender);
         reason = findViewById(R.id.reason);
@@ -44,20 +47,51 @@ public class addpatientdetails extends AppCompatActivity {
         medication = findViewById(R.id.medication);
         notes = findViewById(R.id.notes);
         add_patient = findViewById(R.id.add_patient);
-        genderlabel = findViewById(R.id.genderlabel);
+        pageTitleText= findViewById(R.id.pageTitle);
+        delete_patient = findViewById(R.id.delete_btn);
+        edit_patient = findViewById(R.id.save_btn);
 
-        int year = dob.getYear();
-        int month = dob.getMonth();
-        int day = dob.getDayOfMonth();
 
-        String dob = day + "-" + (month + 1) + "-" + year;
 
-        add_patient.setOnClickListener((v) -> savePatient(dob));
+        //receive for edit
+        editname = getIntent().getStringExtra("name");
+        editcontact_no = getIntent().getStringExtra("contact_no");
+        editgender = getIntent().getStringExtra("gender");
+        editreason = getIntent().getStringExtra("reason");
+        editvital_signs = getIntent().getStringExtra("vital_signs");
+        editmedication = getIntent().getStringExtra("medication");
+        editnotes = getIntent().getStringExtra("notes");
+        docId = getIntent().getStringExtra("docId");
 
+
+        if(docId != null && !docId.isEmpty()) {
+            isEditMode = true;
+            delete_patient.setVisibility(View.VISIBLE);
+            edit_patient.setVisibility(View.VISIBLE);
+            add_patient.setVisibility(View.GONE);
+            //for edit
+        }
+
+        name.setText(editname);
+        contact_no.setText(editcontact_no);
+        reason.setText(editreason);
+        vital_signs.setText(editvital_signs);
+        medication.setText(editmedication);
+        notes.setText(editnotes);
+
+        if(isEditMode){
+            pageTitleText.setText("Edit Patient Details");
+        }
+
+        add_patient.setOnClickListener((v) -> savePatient());
+        delete_patient.setOnClickListener((v)->deletePatientFromFireBase());;
+        edit_patient.setOnClickListener((v)->savePatient());
 
     }
 
-    void savePatient(String dob) {
+
+
+    void savePatient() {
         String stname = this.name.getText().toString();
         String stcontact_no = this.contact_no.getText().toString();
         String stgender = String.valueOf(this.gender.getCheckedRadioButtonId());
@@ -71,7 +105,7 @@ public class addpatientdetails extends AppCompatActivity {
             return;
         }
         if (stgender == null || stgender.isEmpty()) {
-            this.genderlabel.setError("Gender is required");
+            this.name.setError("Gender is required");
             return;
         }
         if (streason == null || streason.isEmpty()) {
@@ -91,7 +125,6 @@ public class addpatientdetails extends AppCompatActivity {
         diagnosis diagnosis = new diagnosis();
 
         diagnosis.setName(stname);
-        diagnosis.setDob(dob);
         diagnosis.setContact_no(stcontact_no);
         diagnosis.setGender(stgender);
         diagnosis.setReason(streason);
@@ -105,8 +138,12 @@ public class addpatientdetails extends AppCompatActivity {
     }
     void saveDiagnosisToFirebase(diagnosis diagnosis) {
         DocumentReference documentReference;
-        documentReference = Utility.getCollectionReferenceFromUsers().document();
 
+        if(isEditMode){//in edit diagnosis pass the docId
+            documentReference = Utility.getCollectionReferenceFromUsers().document(docId);
+        }else{//if not in edit mode i.e new patient
+            documentReference = Utility.getCollectionReferenceFromUsers().document();
+        }
         documentReference.set(diagnosis).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -114,12 +151,30 @@ public class addpatientdetails extends AppCompatActivity {
                     //diagnosis is saved to the firebase cloud storage
                     Utility.showToast(addpatientdetails.this, "Diagnosis Saved");
                     finish();
-                }else{
+                }else{//if failed to save
                     Utility.showToast(addpatientdetails.this, "Failed to Save");
                 }
             }
         });
 
+    }
+    private void deletePatientFromFireBase() {
+        DocumentReference documentReference;
+
+        documentReference = Utility.getCollectionReferenceFromUsers().document(docId);
+
+        documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    //diagnosis is deleted from the firebase cloud storage
+                    Utility.showToast(addpatientdetails.this, "Diagnosis Deleted");
+                    finish();
+                }else{//if failed to deleted
+                    Utility.showToast(addpatientdetails.this, "Failed to Delete");
+                }
+            }
+        });
     }
 
 }

@@ -3,7 +3,7 @@ package com.example.mediconnect;
 import com.google.firebase.Timestamp;
 
 public class diagnosis {
-    String name,dob,contact_no,gender,reason,vital_signs,medication,notes;
+    String name,contact_no,gender,reason,vital_signs,medication,notes;
     Timestamp timestamp;
 
     public diagnosis() {
@@ -15,14 +15,6 @@ public class diagnosis {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
     }
 
     public String getContact_no() {
