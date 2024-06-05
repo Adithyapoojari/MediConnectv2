@@ -2,8 +2,9 @@ package com.example.mediconnect;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.Query;
+
 
 public class diagnosisHistory extends AppCompatActivity {
     FloatingActionButton add_btn;
@@ -35,17 +37,14 @@ public class diagnosisHistory extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigator);
 
-        //for navigation of bottom
+        //for current page value
         bottomNavigationView.setSelectedItemId(R.id.home);
-
-// Assuming you have a BottomNavigationView variable named bottomNavigationView
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getTitle().equals("All Records")){
                     return true;
-
                 }
                 else if(item.getTitle().equals("Profile")){
                     startActivity(new Intent(getApplicationContext(), profile.class));
@@ -62,20 +61,18 @@ public class diagnosisHistory extends AppCompatActivity {
         });
 
         setupRecyclerView();
-
     }
 
     void setupRecyclerView(){
-
-        Query query = Utility.getCollectionReferenceFromUsers().orderBy("timestamp",Query.Direction.DESCENDING);//to order diagnosis in descending order
-        FirestoreRecyclerOptions<diagnosis> options = new FirestoreRecyclerOptions.Builder<diagnosis>()//for pagination
-        .setQuery(query, diagnosis.class).build();//for returning recycler options
+        Query query = Utility.getCollectionReferenceFromUsers().orderBy("timestamp",Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<diagnosis> options = new FirestoreRecyclerOptions.Builder<diagnosis>()
+                .setQuery(query, diagnosis.class).build();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         diagnosisadaptor = new diagnosisadaptor(options,this);
         recyclerView.setAdapter(diagnosisadaptor);
-
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -87,10 +84,10 @@ public class diagnosisHistory extends AppCompatActivity {
         super.onStop();
         diagnosisadaptor.stopListening();
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         diagnosisadaptor.notifyDataSetChanged();
     }
+
 }

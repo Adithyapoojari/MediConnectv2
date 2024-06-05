@@ -30,8 +30,8 @@
     <ImageButton
         android:id="@+id/menu"
         android:layout_width="38dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="36dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/menu"
@@ -49,8 +49,51 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.232"
         tools:layout_editor_absoluteX="-40dp">
+        <ViewFlipper
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:flipInterval="3000"
+            android:autoStart="true"
+            android:background="@drawable/inputfield_design"
+            android:inAnimation="@android:anim/slide_in_left"
+            android:outAnimation="@android:anim/slide_out_right">
 
-        <LinearLayout
+            <ImageView
+                android:layout_width="430dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputfield_design"
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgslide_c" />
+
+            <ImageView
+                android:layout_width="430dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:src="@drawable/imgslide_b"
+                android:background="@drawable/inputfield_design"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:layout_width="430dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputfield_design"
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgslide_a"/>
+
+            <ImageView
+                android:layout_width="440dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/image_border"
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgslide_d"/>
+
+
+        </ViewFlipper>
+
+       <!-- <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -76,7 +119,7 @@
                 android:background="@drawable/image_border"
                 android:scaleType="centerCrop" />
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </HorizontalScrollView>
 

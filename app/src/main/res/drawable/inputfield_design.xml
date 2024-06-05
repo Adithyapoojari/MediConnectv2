@@ -3,7 +3,7 @@
     android:shape="rectangle">
 
     <!-- Semi-transparent green color with a hint of blur -->
-    <solid android:color="#8BC34A80" />
+    <solid android:color="#8BB5517E" />
 
     <!-- Blur effect with a larger radius -->
     <blur
