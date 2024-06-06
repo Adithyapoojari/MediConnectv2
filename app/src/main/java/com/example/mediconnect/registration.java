@@ -26,10 +26,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class registration extends AppCompatActivity {
 
-    EditText editTextEmail, editTextPassword,c_passwordtext;
+    EditText editTextEmail, editTextPassword,c_passwordtext,username;
     Button buttonReg;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -64,7 +66,9 @@ public class registration extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         textView = findViewById(R.id.loginto);
         c_passwordtext = findViewById(R.id.confirm_password);
+        username = findViewById(R.id.userName);
         Vibration.init(this);
+
 
         // Initialize SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
@@ -81,15 +85,14 @@ public class registration extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         String c_password = c_passwordtext.getText().toString();
-
+        String username = this.username.getText().toString();
         boolean is_valid = validateData(email,password,c_password);
         if(!is_valid){
             return;
         }
-        createAccountInFireBase(email,password);
+        createAccountInFireBase(email,password,username);
     }
-    void createAccountInFireBase(String email, String password){
-
+    void createAccountInFireBase(String email, String password,String username){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(registration.this,
                 new OnCompleteListener<AuthResult>() {
@@ -98,6 +101,10 @@ public class registration extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Utility.showToast(registration.this,"Account created successfully! Check Email For Verification");
                             firebaseAuth.getCurrentUser().sendEmailVerification();
+                            String username = registration.this.username.getText().toString();
+                            String uid = firebaseAuth.getCurrentUser().getUid();
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                            databaseReference.child("username").setValue(username);
                             firebaseAuth.signOut();
                             startActivity(new Intent(registration.this,login.class));
                         }else{

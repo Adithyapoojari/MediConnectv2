@@ -15,10 +15,15 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -45,8 +50,6 @@ public class home extends AppCompatActivity {
         //for navigation of bottom
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-// Assuming you have a BottomNavigationView variable named bottomNavigationView
-
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -69,18 +72,32 @@ public class home extends AppCompatActivity {
         });
 
         menu_btn.setOnClickListener(v-> showMenu());
-
-        String greetingMessage;
-        greetingMessage = "Hello There!";
-        // Get the current user from Firebase Authentication
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        String userName = currentUser.getEmail() + "";
-
-        // Construct the text to be displayed
-        String displayText = greetingMessage + "\n" + userName;
-
-        // Set the text to the TextView
-        username.setText(displayText);
+        
+        //set the name in the textview
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+            databaseReference.child("username").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DataSnapshot dataSnapshot = task.getResult();
+                        if (dataSnapshot.exists()) {
+                            String username = dataSnapshot.getValue(String.class);
+                            home.this.username.setText(username);
+                        } else {
+                            username.setText("Username does not exist");
+                        }
+                    } else {
+                        username.setText("Error getting username");
+                    }
+                }
+            });
+        } else {
+            username.setText("You are not signed in");
+        }
     }
 
     void showMenu(){
@@ -116,6 +133,4 @@ public class home extends AppCompatActivity {
         });
 
     }
-
-
 }

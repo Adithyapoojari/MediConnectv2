@@ -1,20 +1,49 @@
 package com.example.mediconnect;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class profile extends AppCompatActivity {
+    private static final String IMAGE_URI_KEY = "image_uri";
+    private SharedPreferences sharedPreferences;
     BottomNavigationView bottomNavigationView;
+    ImageView imageView;
+    TextView userEmail,userName;
+    FirebaseAuth mAuth;
+    FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +51,74 @@ public class profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         bottomNavigationView = findViewById(R.id.bottom_navigator);
+        imageView = findViewById(R.id.imageView2);
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        userEmail = findViewById(R.id.userEmail);
+        userName = findViewById(R.id.userName);
+        mAuth = FirebaseAuth.getInstance();
+
+        sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
+
+        String imageUri = sharedPreferences.getString(IMAGE_URI_KEY, null);
+        if (imageUri!= null) {
+            imageView.setImageURI(Uri.parse(imageUri));
+        }
+        else{
+            imageView.setImageResource(R.drawable.user_img);
+        }
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.with(profile.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+            }
+        });
+
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String email = currentUser.getEmail() + "";
+        //Set the email in the TextView
+        userEmail.setText(email);
+        //set the name in the textview
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+            databaseReference.child("username").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DataSnapshot dataSnapshot = task.getResult();
+                        if (dataSnapshot.exists()) {
+                            String username = dataSnapshot.getValue(String.class);
+                            userName.setText(username);
+                        } else {
+                            userName.setText("Username does not exist");
+                        }
+                    } else {
+                        userName.setText("Error getting username: " + task.getException().getMessage());
+                    }
+                }
+            });
+        } else {
+            userName.setText("You are not signed in");
+        }
+
 
         //for navigation of bottom
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.profile);
 
-// Assuming you have a BottomNavigationView variable named bottomNavigationView
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setBackgroundDrawable(new ColorDrawable(getColor(R.color.grey)));
+            }
+        }
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -48,5 +139,14 @@ public class profile extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Uri uri = data.getData();
+        imageView.setImageURI(uri);
+
+        sharedPreferences.edit().putString(IMAGE_URI_KEY, uri.toString()).apply();
     }
 }

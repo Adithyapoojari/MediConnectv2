@@ -5,16 +5,19 @@
         <item
             android:id="@+id/home"
             android:title="Home"
+            android:textSize="15sp"
             android:icon="@drawable/home_btn" />
 
             <item
                 android:id="@+id/history"
                 android:title="All Records"
+                android:textSize="15sp"
                 android:icon="@drawable/newp" />
 
             <item
                 android:id="@+id/profile"
                 android:title="Profile"
+                android:textSize="15sp"
                 android:icon="@drawable/profile_btn" />
     </menu>
 

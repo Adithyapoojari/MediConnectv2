@@ -4,28 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
-    android:background="@color/backbg"
+    android:background="@drawable/profilebtns"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="116dp"
+        android:text="Hello"
+        android:textColor="@color/backg"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintEnd_toStartOf="@+id/username"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="212dp"
         android:text="@string/wishuser"
         android:textColor="@color/backg"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/menu"
@@ -44,17 +57,16 @@
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.232"
         tools:layout_editor_absoluteX="-40dp">
+
         <ViewFlipper
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:flipInterval="3000"
             android:autoStart="true"
-            android:background="@drawable/inputfield_design"
+            android:flipInterval="3000"
             android:inAnimation="@android:anim/slide_in_left"
             android:outAnimation="@android:anim/slide_out_right">
 
@@ -70,9 +82,9 @@
                 android:layout_width="430dp"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
-                android:src="@drawable/imgslide_b"
                 android:background="@drawable/inputfield_design"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgslide_b" />
 
             <ImageView
                 android:layout_width="430dp"
@@ -80,7 +92,7 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/inputfield_design"
                 android:scaleType="centerCrop"
-                android:src="@drawable/imgslide_a"/>
+                android:src="@drawable/imgslide_a" />
 
             <ImageView
                 android:layout_width="440dp"
@@ -88,46 +100,17 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/image_border"
                 android:scaleType="centerCrop"
-                android:src="@drawable/imgslide_d"/>
+                android:src="@drawable/imgslide_d" />
 
 
         </ViewFlipper>
-
-       <!-- <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="440dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/image_border"
-                android:scaleType="centerCrop" />
-
-            <ImageView
-                android:layout_width="440dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/image_border"
-                android:scaleType="centerCrop" />
-
-            <ImageView
-                android:layout_width="440dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/image_border"
-                android:scaleType="centerCrop" />
-
-        </LinearLayout>-->
-
     </HorizontalScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/white"
+        app:itemBackground="@color/black"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"

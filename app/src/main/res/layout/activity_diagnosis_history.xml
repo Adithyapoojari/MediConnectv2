@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/backbg"
+    android:background="@drawable/profilebtns"
     tools:context=".diagnosisHistory">
 
     <RelativeLayout
@@ -15,12 +15,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/page_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="30dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="30dp"
             android:text="Diagnosis History"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -42,12 +42,13 @@
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigator"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="91dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="40dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/newp" />
+        android:src="@drawable/add_btn"
+        app:layout_constraintTop_toTopOf="@id/bottom_navigator" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
@@ -55,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-3dp"
-        app:itemBackground="@color/white"
+        app:itemBackground="@color/black"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"

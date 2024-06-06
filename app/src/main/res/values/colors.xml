@@ -3,7 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#F550DD40</color>
-    <color name="buttonColor">#818A8C7F</color>
+    <color name="red">#F5CD172C</color>
+    <color name="buttonColor">#81939A6E</color>
     <color name="mainColor">#EE57D134</color>
     <color name="buttonColor2">#134098</color>
     <color name="grey">#6D7077</color>
