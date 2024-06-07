@@ -12,31 +12,33 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="210dp"
-        android:layout_height="143dp"
+        android:layout_width="344dp"
+        android:layout_height="617dp"
         android:layout_margin="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/logo" />
+        android:src="@drawable/splashlogofinal" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:indeterminateTint="@color/black" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:typeface="monospace"
-        android:textColor="@color/backg"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="32sp" />
-
-    <ProgressBar
-        android:layout_width="wrap_content"
+        android:text="since\n2024"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center" />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/white"
-        android:id="@+id/progress"
-        android:layout_margin="16dp"/>
-
-
-
-
+        android:text="M e d D a t a"
+        android:padding="10dp"
+        android:textColor="@color/backg"
+        android:textSize="20sp"
+        android:gravity="center" />
 
 </LinearLayout>

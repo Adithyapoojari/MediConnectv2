@@ -14,44 +14,48 @@
         android:layout_width="310dp"
         android:layout_height="56dp"
         android:layout_marginBottom="320dp"
-        android:textColor="@color/backg"
         android:background="@drawable/profilebtns"
+        android:text="Create New Account"
+        android:textColor="@color/backg"
         android:textSize="20sp"
         android:typeface="monospace"
-        android:text="Create New Account"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/App_Info"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/App_Info"
         android:layout_width="310dp"
         android:layout_height="56dp"
         android:layout_marginBottom="406dp"
-        android:textColor="@color/backg"
         android:background="@drawable/profilebtns"
+        android:text="App Info"
+        android:textColor="@color/backg"
         android:textSize="20sp"
         android:typeface="monospace"
-        android:text="App Info"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Know_us"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/Know_us"
         android:layout_width="310dp"
         android:layout_height="56dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/profilebtns"
         android:text="Know More About Us"
         android:textColor="@color/backg"
-        android:background="@drawable/profilebtns"
         android:textSize="20sp"
         android:typeface="monospace"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -73,10 +77,9 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.323"
+        app:layout_constraintVertical_bias="0.47"
         app:shapeAppearanceOverlay="@style/circular"
         app:srcCompat="@drawable/user_img_edit"
         app:strokeColor="@color/white"
@@ -110,17 +113,17 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:srcCompat="@drawable/edit_pic" />
 
+
     <TextView
         android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         android:text="Email Id"
         android:textColor="@color/backg"
         android:textSize="20sp"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -128,13 +131,14 @@
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="UserName"
         android:textColor="@color/backg"
         android:textSize="35sp"
         android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -150,14 +154,15 @@
         android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Create_new"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Copyright 2023 Mediconnect Team.\nAll rights reserved.\nThis button design is a proprietary asset of Mediconnect Team and cannot be used, modified, or distributed without explicit permission."
+        android:text="Copyright 2024 Mediconnect Team.\nAll rights reserved.\nThis button design is a proprietary asset of Mediconnect Team and cannot be used, modified, or distributed without explicit permission."
         android:textAlignment="center"
         android:textColor="@color/backg"
         android:textSize="18sp"

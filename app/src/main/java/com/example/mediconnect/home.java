@@ -1,6 +1,7 @@
 package com.example.mediconnect;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +35,7 @@ public class home extends AppCompatActivity {
     TextView username;
     ImageButton menu_btn;
     BottomNavigationView bottomNavigationView;
-    FloatingActionButton viewHistory;
+    FloatingActionButton addRecord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class home extends AppCompatActivity {
         username =findViewById(R.id.username);
         menu_btn = findViewById(R.id.menu);
         bottomNavigationView = findViewById(R.id.bottom_navigator);
+        addRecord = findViewById(R.id.floatingActionButton2);
 
         //for navigation of bottom
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -72,6 +74,7 @@ public class home extends AppCompatActivity {
         });
 
         menu_btn.setOnClickListener(v-> showMenu());
+        addRecord.setOnClickListener(v-> openaddRecord());
         
         //set the name in the textview
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -100,10 +103,15 @@ public class home extends AppCompatActivity {
         }
     }
 
+    private void openaddRecord() {
+        startActivity(new Intent(getApplicationContext(), addpatientdetails.class));
+        finish();
+    }
+
     void showMenu(){
         PopupMenu popupmenu = new PopupMenu(this,menu_btn);
         popupmenu.getMenu().add("Profile");
-        popupmenu.getMenu().add("Share App");
+        popupmenu.getMenu().add("Know More");
         popupmenu.getMenu().add("Info");
         popupmenu.getMenu().add("Logout");
         popupmenu.show();
@@ -115,8 +123,11 @@ public class home extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), profile.class));
                     finish();
                 }
-                else if(item.getTitle().equals("Share App")){
-                    Utility.showToast(home.this, "In Development");
+                else if(item.getTitle().equals("Know More")){
+                    String url = "https://adithyarpoojary.netlify.app";
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
                 }
                 else if(item.getTitle().equals("Info")){
                     Utility.showToast(home.this, "App Version 1.0");

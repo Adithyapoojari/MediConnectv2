@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +42,8 @@ public class profile extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     BottomNavigationView bottomNavigationView;
     ImageView imageView;
+
+    Button logout,change_act,know_more,appIfo;
     TextView userEmail,userName;
     FirebaseAuth mAuth;
     FloatingActionButton floatingActionButton;
@@ -55,6 +58,16 @@ public class profile extends AppCompatActivity {
         floatingActionButton = findViewById(R.id.floatingActionButton);
         userEmail = findViewById(R.id.userEmail);
         userName = findViewById(R.id.userName);
+        logout = findViewById(R.id.logout);
+        change_act = findViewById(R.id.Create_new);
+        know_more = findViewById(R.id.Know_us);
+        appIfo = findViewById(R.id.App_Info);
+
+        logout.setOnClickListener(v-> logoout());
+        change_act.setOnClickListener(v->newAct());
+        know_more.setOnClickListener(v->knowmore());
+        appIfo.setOnClickListener(v->appInfo());
+
         mAuth = FirebaseAuth.getInstance();
 
         sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
@@ -139,6 +152,34 @@ public class profile extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void appInfo() {
+        Utility.showToast(profile.this, "App Version 1.0");
+    }
+
+    private void knowmore() {
+        String url = "https://adithyarpoojary.netlify.app";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    private void newAct() {
+        // Clear any existing user data or session
+        SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+        preferences.edit().clear().apply();
+
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), landing.class));
+        finish();
+        Vibration.vibrate();
+    }
+
+    private void logoout() {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), login.class));
+        finish();
+        Vibration.vibrate();
     }
 
     @Override

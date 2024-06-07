@@ -9,113 +9,189 @@
     android:layout_height="match_parent"
     tools:context=".home">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="116dp"
-        android:text="Hello"
-        android:textColor="@color/backg"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintEnd_toStartOf="@+id/username"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="212dp"
-        android:text="@string/wishuser"
-        android:textColor="@color/backg"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/menu"
-        android:layout_width="38dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/username"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.232"
-        tools:layout_editor_absoluteX="-40dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/profilebtns"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="-40dp">
 
-        <ViewFlipper
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:text="Hello!!"
+            android:textColor="@color/backg"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+            app:layout_constraintEnd_toStartOf="@+id/menu"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.384" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medi-User"
+            android:textColor="@color/backg"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="38dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/username"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:autoStart="true"
-            android:flipInterval="3000"
-            android:inAnimation="@android:anim/slide_in_left"
-            android:outAnimation="@android:anim/slide_out_right">
+            android:layout_height="320dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.232">
 
-            <ImageView
-                android:layout_width="430dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/inputfield_design"
-                android:scaleType="centerCrop"
-                android:src="@drawable/imgslide_c" />
+            <ViewFlipper
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:autoStart="true"
+                android:flipInterval="3000"
+                android:inAnimation="@android:anim/slide_in_left"
+                android:outAnimation="@android:anim/slide_out_right">
 
-            <ImageView
-                android:layout_width="430dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/inputfield_design"
-                android:scaleType="centerCrop"
-                android:src="@drawable/imgslide_b" />
+                <ImageView
+                    android:layout_width="490dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/inputfield_design"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgslide_c" />
 
-            <ImageView
-                android:layout_width="430dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/inputfield_design"
-                android:scaleType="centerCrop"
-                android:src="@drawable/imgslide_a" />
+                <ImageView
+                    android:layout_width="490dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/inputfield_design"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgslide_b" />
 
-            <ImageView
-                android:layout_width="440dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@drawable/image_border"
-                android:scaleType="centerCrop"
-                android:src="@drawable/imgslide_d" />
+                <ImageView
+                    android:layout_width="490dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/inputfield_design"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgslide_a" />
+
+                <ImageView
+                    android:layout_width="490dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/image_border"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgslide_d" />
 
 
-        </ViewFlipper>
-    </HorizontalScrollView>
+            </ViewFlipper>
+        </HorizontalScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/black"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_item" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Ａｄｄ Ｐａｔｉｅｎｔｓ"
+            android:textColor="@color/backg"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.071"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="181dp"
+            android:layout_height="157dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/arrow2final"
+            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:clickable="true"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.783"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+            app:srcCompat="@drawable/newp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:text="Ｖｉｅｗ ＆ Ｅｄｉｔ Ｒｅｃｏｒｄｓ"
+            android:textColor="@color/backg"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.858"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/floatingActionButton2" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="183dp"
+            android:layout_height="158dp"
+            android:layout_marginTop="8dp"
+            android:rotation="180"
+            android:scaleX="-1"
+            android:scaleY="-1"
+            android:src="@drawable/arrow1final"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/black"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

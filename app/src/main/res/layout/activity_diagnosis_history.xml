@@ -45,6 +45,7 @@
         android:layout_above="@+id/bottom_navigator"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="48dp"
+        android:backgroundTint="@color/white"
         android:layout_marginBottom="40dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/add_btn"

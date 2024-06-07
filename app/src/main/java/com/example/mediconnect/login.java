@@ -45,10 +45,6 @@ public class login extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-       SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
-       SharedPreferences.Editor editor = sharedPreferences.edit();
-       editor.putBoolean("isFirstRun", false);
-       editor.apply();
     }
 
     @Override

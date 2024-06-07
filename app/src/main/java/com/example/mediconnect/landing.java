@@ -44,17 +44,6 @@ public class landing extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
 
         btnReg = findViewById(R.id.buttonRegister);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
-
-        // Check if the user has already registered
-        boolean isFirstRun = sharedPreferences.getBoolean("isFirstRun", true);
-        if (!isFirstRun) {
-            // If not the first run, redirect to login activity
-            startActivity(new Intent(this, login.class));
-            finish();
-        }
-
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
